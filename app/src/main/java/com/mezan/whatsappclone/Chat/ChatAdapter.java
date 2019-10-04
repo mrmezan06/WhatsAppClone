@@ -1,18 +1,22 @@
 package com.mezan.whatsappclone.Chat;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mezan.whatsappclone.ChatActivity;
 import com.mezan.whatsappclone.R;
 
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> {
 
-    private List<ChatObject> ChatList;
+    private List<ChatObject> chatList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mTitle;
@@ -28,8 +32,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
 
 
 
-    public ChatAdapter(List<ChatObject> ChatList){
-        this.ChatList = ChatList;
+    public ChatAdapter(List<ChatObject> chatList){
+        this.chatList = chatList;
     }
 
     @Override
@@ -41,20 +45,25 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ChatAdapter.MyViewHolder holder, int position) {
-        ChatObject chat = ChatList.get(position);
+    public void onBindViewHolder(final ChatAdapter.MyViewHolder holder, int position) {
+        ChatObject chat = chatList.get(position);
         holder.mTitle.setText(chat.getChatId());
 
 
-       /* holder.mLayout.setOnClickListener(new View.OnClickListener() {
+        holder.mLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("chatID",chatList.get(holder.getAdapterPosition()).getChatId());
+                intent.putExtras(bundle);
+                view.getContext().startActivity(intent);
                 }
-        });*/
+        });
     }
 
     @Override
     public int getItemCount() {
-        return ChatList.size();
+        return chatList.size();
     }
 }
