@@ -32,9 +32,9 @@ import static android.content.Intent.EXTRA_ALLOW_MULTIPLE;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private RecyclerView mChat;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView mChat,mMedia;
+    private RecyclerView.Adapter mAdapter,mMediaAdapter;
+    private RecyclerView.LayoutManager mLayoutManager,mMediaLM;
     List<MessageObject> messageList = new ArrayList<>();
 
     EditText messageText;
@@ -70,7 +70,8 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        initializeRecyclerView();
+        initializeMessage();
+        initializeMedia();
 
         getChatMessages();
     }
@@ -99,6 +100,7 @@ public class ChatActivity extends AppCompatActivity {
                         mediaURIList.add(data.getClipData().getItemAt(i).getUri().toString());
                     }
                 }
+                mMediaAdapter.notifyDataSetChanged();
             }
         }
     }
@@ -159,7 +161,7 @@ public class ChatActivity extends AppCompatActivity {
         messageText.setText(null);
     }
 
-    private void initializeRecyclerView() {
+    private void initializeMessage() {
 
         mChat=findViewById(R.id.messageRV);
 
@@ -178,4 +180,25 @@ public class ChatActivity extends AppCompatActivity {
         mChat.setAdapter(mAdapter);
 
     }
+    private void initializeMedia() {
+
+        mMedia=findViewById(R.id.mediaRV);
+
+
+        //Adapter
+        mMediaAdapter=new MediaAdapter(mediaURIList,getApplicationContext());
+
+
+        mMediaLM = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+
+        /*mMedia.addItemDecoration(new DividerItemDecoration(this,
+                DividerItemDecoration.HORIZONTAL));*/
+
+        mMedia.setLayoutManager(mMediaLM);
+        mMedia.setItemAnimator(new DefaultItemAnimator());
+        mMedia.setAdapter(mMediaAdapter);
+
+    }
 }
+
+// 3h 19min

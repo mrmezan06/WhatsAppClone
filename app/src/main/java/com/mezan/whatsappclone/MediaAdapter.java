@@ -1,34 +1,51 @@
 package com.mezan.whatsappclone;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
-public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.MediaViewHolder>{
-    ArrayList<String> mediaList;
+
+public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.MediaViewHolder> {
+
+    private ArrayList<String> mediaList;
     Context context;
-    public MediaAdapter(Context context,ArrayList<String> mediaList){
-        this.context = context;
+
+
+
+
+
+    MediaAdapter(ArrayList<String> mediaList,Context context){
         this.mediaList = mediaList;
+        this.context = context;
     }
 
-    @NonNull
     @Override
-    public MediaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-      //  LayoutInflater.from(parent.getContext()).inflate(R.layout.,null);
+    public MediaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+//        need layout inflation
+
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_message, parent, false);
-        return null;
+                .inflate(R.layout.item_media, null, false);
+
+        MediaViewHolder holder = new MediaViewHolder(itemView);
+
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MediaViewHolder holder, int position) {
+    public void onBindViewHolder(MediaAdapter.MediaViewHolder holder, int position) {
+        Glide.with(context).load(Uri.parse(mediaList.get(position))).into(holder.mMedia);
 
     }
 
@@ -36,11 +53,12 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.MediaViewHol
     public int getItemCount() {
         return mediaList.size();
     }
-
-    public class MediaViewHolder extends RecyclerView.ViewHolder{
-
-        public MediaViewHolder(@NonNull View itemView) {
+    class MediaViewHolder extends RecyclerView.ViewHolder{
+        ImageView mMedia;
+        MediaViewHolder(@NonNull View itemView) {
             super(itemView);
+            mMedia = itemView.findViewById(R.id.mediaFile);
+
         }
     }
 }

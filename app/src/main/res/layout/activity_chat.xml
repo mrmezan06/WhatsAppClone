@@ -11,6 +11,7 @@
         android:id="@+id/messageRV"
         android:layout_above="@id/mSendLay"
         />
+
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
@@ -21,7 +22,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
             android:id="@+id/mediaRV"
             />
 
