@@ -26,12 +26,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
     implementation 'com.android.support:design:28.0.3'
 
     implementation 'com.google.firebase:firebase-analytics:17.0.0'
     implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.google.firebase:firebase-storage:17.0.0'
+
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+    implementation 'com.github.stfalcon:frescoimageviewer:0.5.0'
 }
 apply plugin: 'com.google.gms.google-services'

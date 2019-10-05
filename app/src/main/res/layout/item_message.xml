@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:weightSum="10"
     android:id="@+id/msg_Lay_root"
+    >
+<LinearLayout
+    android:layout_weight="7"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     >
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="Akash Khan"
         android:id="@+id/message"
@@ -14,10 +21,28 @@
         android:textColor="#000"
         />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:text="01786995549"
         android:id="@+id/sender"
         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
+        />
+</LinearLayout>
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="View Media"
+            android:id="@+id/viewMedia"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>
